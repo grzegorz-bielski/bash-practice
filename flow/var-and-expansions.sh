@@ -19,6 +19,15 @@ echo 'My boss lives in: ' ~root
 echo 'Hello world.' > hello.txt
 echo "The file <hello.txt> contains: $(cat hello.txt)"
 
+# unset
+var=10
+unset var
+echo $var
+
+# read user input
+read var2
+echo $var2
+
 # shell variables
 name=kek
 contents="$(cat hello.txt)"

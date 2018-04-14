@@ -22,6 +22,8 @@ rm hello.txt || {
     echo "Couldn't delete hello.txt." >&2; exit 1; 
 }
 
+sleep 1
+
 # Coprocesses
 # for running command asynchronously
 #  coproc [ name ] command [ redirection ... ]
@@ -43,3 +45,14 @@ exists gpg || echo "Please install GPG." <&2
 # Literals
 echo 'ayy lmao'
 echo "Hello $USER"
+
+# ps in the backgorund
+jobs
+sleep 5 &
+jobs
+
+# bring background running command to foreground
+fg 1
+
+wait
+times

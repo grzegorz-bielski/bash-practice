@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # pathname expansion
-rm -v ./sth/*
+# rm -v ./sth/*
 # * - anything
 # ? - one single char
 # [chars] - a set of chars
@@ -28,6 +28,20 @@ echo $var
 read var2
 echo $var2
 
+# declare types
+
+# read only
+declare -r varr=2
+# int
+declare -i x
+x=8/2
+# func
+declare -f func
+func() { echo "kek" }
+func
+#export
+declare -x varx=10
+
 # shell variables
 name=kek
 contents="$(cat hello.txt)"
@@ -39,6 +53,19 @@ echo "PATH currently contains: ${PATH//:/, }"
 echo "$greeting" > "${greeting// /_}.txt"
 
 # env variables
+# 0 for user
+echo $UID 
+echo $GROUPS
+echo $HOSTNAME
+echo $HOME
+echo $LINENO
+echo $OSTYPE
+echo $PWD
+echo $OLDPWD
+echo $REPLY
+echo $SECONDS
+echo $RANDOM
+#separator IFS=<symbol>
 export name=kek
 # Each child process inherits the variables from its parent's environment.
 
@@ -67,16 +94,18 @@ echo "$$" > /var/run/myscript.pid
 # shell internal variables
 # BASH, UID, HOME, RANDOM, PWD, MACHTYPE, PATH etc...
 
-# arrays
-files=( myscript hello.txt "05 Between Angels and Insects.ogg" )
-# [@] - expand arrays into arguments
-$ rm -v "${files[@]}"
+# arithmetic
+var5=
+let "var5 += 10"
 
-# append
-files+=( selfie.png )
-# glob patterns
-files=( *.txt )
-# expand single item
-$ echo "${files[0]}"
-# remove item
-$ unset "files[3]"
+# substitution
+num=${var5/10/B}
+echo $var
+
+# set - setting/unsetting shell options
+set +0 history
+set -0 history
+
+#  break a single argument with multiple flags into multiple arguments each with single flag
+# ./script -ab, ./script -a -b
+# set -- $args
